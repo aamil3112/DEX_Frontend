@@ -1,30 +1,10 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 
 const suggestionsData = [
-  'apple',
-  'banana',
-  'cherry',
-  'date',
-  'elderberry',
-  'fig',
-  'grape',
-  'honeydew',
-  'kiwi',
-  'lemon',
-  'mango',
-  'nectarine',
-  'orange',
-  'papaya',
-  'quince',
-  'raspberry',
-  'strawberry',
-  'tangerine',
-  'ugli fruit',
-  'vanilla',
-  'watermelon',
-  'xigua',
-  'yellow passion fruit',
-  'zucchini'
+  'apple', 'banana', 'cherry', 'date', 'elderberry', 'fig', 'grape', 'honeydew',
+  'kiwi', 'lemon', 'mango', 'nectarine', 'orange', 'papaya', 'quince', 'raspberry',
+  'strawberry', 'tangerine', 'ugli fruit', 'vanilla', 'watermelon', 'xigua',
+  'yellow passion fruit', 'zucchini'
 ];
 
 const Search = () => {
@@ -47,7 +27,6 @@ const Search = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Search query:', query);
-    // Replace the above line with your search functionality, such as calling an API
   };
 
   const handleSuggestionClick = (suggestion) => {
@@ -56,7 +35,7 @@ const Search = () => {
   };
 
   return (
-    <div className="relative mx-auto text-gray-600 mb-6">
+    <div className="relative mx-auto text-gray-600 mb-6 w-full">
       <form onSubmit={handleSubmit} className="pt-2">
         <input
           className="border-2 border-gray-300 bg-white px-5 py-3 pr-16 rounded-lg text-sm focus:outline-none w-full"
