@@ -1,11 +1,13 @@
 import AreaChartComp from "../components/AreaChartComp"
+import Search from "../components/Search"
 import TableCom from "../components/TableCom"
 
 
 const Scan = () => {
   return (
     <>
-    <div className="px-12 py-12 bg-purple-500">
+    <div className="px-12 py-6 bg-purple-500">
+    <Search/>
       <div className="pl-4 pb-4 flex items-center space-x-6 text-white">
         <p className="text-xl font-bold">POX Price: $ 0.1223</p>
         <p className="font-medium">Pairs:20,606</p>
