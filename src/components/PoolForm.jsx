@@ -43,9 +43,9 @@ const PoolForm = () => {
         />
       </InputField>
 
-      <div className="flex justify-between items-center">
-        <IoAddOutline className="my-6" />
-        <p>Advanced Settings</p>
+      <div className="flex flex-col md:flex-row justify-center items-center md:items-start md:space-x-4">
+        <IoAddOutline className="my-6 md:mt-12" />
+        <p className="md:mt-12">Advanced Settings</p>
       </div>
 
       <InputField
@@ -60,13 +60,14 @@ const PoolForm = () => {
           otherSelectedOption={fromToken}
         />
       </InputField>
-      <button className="w-3/4 mt-14 rounded-md bg-[#F3BB1B] px-4 py-[10px] font-semibold cursor-pointer">
-            Connect To Wallet
-          </button>
+      <button className="w-full md:w-3/4 mt-14 rounded-md bg-[#F3BB1B] px-4 py-[10px] font-semibold cursor-pointer">
+        Connect To Wallet
+      </button>
 
       {error && <p className="text-red-500 mt-2">{error}</p>}
     </div>
   );
 };
+
 
 export default PoolForm;

@@ -41,7 +41,7 @@ const SwapForm = () => {
   };
 
   return (
-    <div className="w-full pt-12">
+    <div className="w-full pt-6 md:pt-12">
       <InputField
         label="From"
         placeholder="Enter an amount"
@@ -55,7 +55,7 @@ const SwapForm = () => {
         />
       </InputField>
 
-      <TbArrowsDownUp size={20} style={{ margin: 10, cursor: "pointer" }} onClick={handleSwap} />
+      <TbArrowsDownUp size={20} className="my-4 md:my-8" style={{ cursor: "pointer" }} onClick={handleSwap} />
 
       <InputField
         label="To"
