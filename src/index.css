@@ -9,3 +9,25 @@
       margin: 0;
     }
   }
+
+  .yellow-header {
+    background-color: #F3BB1B ;
+    border:none !important;
+}
+
+.yellow-header1{
+  border-top-left-radius: 12px;
+}
+
+.yellow-header5{
+  border-top-right-radius: 12px;
+}
+
+.card{
+  border-top-left-radius: 22px !important;
+}
+
+[role="row"] {
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #ddd;
+}
