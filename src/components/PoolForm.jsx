@@ -1,26 +1,14 @@
-import React, { useState } from "react";
-import { TbArrowsDownUp } from "react-icons/tb";
+import { useState } from "react";
 import DropdownButton from "../components/DropDownButton";
 import InputField from "../components/InputField";
+import { IoAddOutline } from "react-icons/io5";
 
-const SwapForm = () => {
+const PoolForm = () => {
   const [fromAmount, setFromAmount] = useState(0);
   const [toAmount, setToAmount] = useState(0);
   const [fromToken, setFromToken] = useState("Select a token");
   const [toToken, setToToken] = useState("Select a token");
   const [error, setError] = useState("");
-
-  const handleSwap = () => {
-    if (fromToken === "Select a token" || toToken === "Select a token") {
-      setError("Please select both tokens before swapping.");
-      return;
-    }
-    setFromAmount(toAmount);
-    setToAmount(fromAmount);
-    setFromToken(toToken);
-    setToToken(fromToken);
-    setError("");
-  };
 
   const handleFromTokenSelect = (token) => {
     if (token === toToken) {
@@ -41,7 +29,7 @@ const SwapForm = () => {
   };
 
   return (
-    <div className="w-full pt-12">
+    <div className="w-full text-center py-10">
       <InputField
         label="From"
         placeholder="Enter an amount"
@@ -55,7 +43,10 @@ const SwapForm = () => {
         />
       </InputField>
 
-      <TbArrowsDownUp size={20} style={{ margin: 10, cursor: "pointer" }} onClick={handleSwap} />
+      <div className="flex justify-between items-center">
+        <IoAddOutline className="my-6" />
+        <p>Advanced Settings</p>
+      </div>
 
       <InputField
         label="To"
@@ -69,10 +60,13 @@ const SwapForm = () => {
           otherSelectedOption={fromToken}
         />
       </InputField>
+      <button className="w-3/4 mt-14 rounded-md bg-[#F3BB1B] px-4 py-[10px] font-semibold cursor-pointer">
+            Connect To Wallet
+          </button>
 
       {error && <p className="text-red-500 mt-2">{error}</p>}
     </div>
   );
 };
 
-export default SwapForm;
+export default PoolForm;

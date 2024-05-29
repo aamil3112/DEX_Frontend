@@ -4,7 +4,7 @@ const InputField = ({ label, placeholder, value, onChange, children }) => {
     <div className="relative w-full">
      <input
   type="number"
-  className="border-1 peer block w-full appearance-none rounded-lg border border-black bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-black focus:outline-none focus:ring-0"
+  className="border-1 peer block w-full appearance-none rounded-lg border border-black bg-transparent px-2.5 pb-4 pt-4 text-sm text-gray-900 focus:border-black focus:outline-none focus:ring-0"
   placeholder={placeholder}
   onChange={onChange}
   style={{ '-moz-appearance': 'textfield' }} /* Firefox */

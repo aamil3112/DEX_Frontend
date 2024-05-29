@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Home, Lppools, Pool, Scan, Swap } from "./pages";
+import { Home, Lppools, Pool, Scan } from "./pages";
 import Navbar from "./layout/Navbar";
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/swap" element={<Swap />} />
+          <Route path="/swap" element={<Home />} />
           <Route path="/pool" element={<Pool />} />
           <Route path="/scan" element={<Scan />} />
           <Route path="/lppools" element={<Lppools />} />
