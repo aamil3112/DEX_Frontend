@@ -78,7 +78,7 @@
 .p-paginator .p-paginator-page,
 .p-paginator .p-paginator-prev,
 .p-paginator .p-paginator-next {
-  border:solid 1px #cc6727;
+  border:solid 1px black;
   border-radius: 6px;
   padding: 8px 12px;
   cursor: pointer;
@@ -93,15 +93,16 @@
 }
 
 .p-paginator .p-paginator-page.p-highlight {
-  background-color: #f4dbc7;
-  color: #cc6727;
+  background-color: black;
+  color: white;
   font-weight: bold;
 }
 
 .p-paginator .p-paginator-prev:hover,
 .p-paginator .p-paginator-next:hover,
 .p-paginator .p-paginator-page:hover:not(.p-highlight) {
-  background-color: #f7a56b;
+  background-color: black;
+  color: white;
 }
 
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import DropdownButton from "../components/DropDownButton";
 import InputField from "../components/InputField";
-import { IoAddOutline } from "react-icons/io5";
+import { IoAddOutline, IoArrowBackOutline  } from "react-icons/io5";
 import PoolTable from "./PoolTable";
 
 const PoolForm = () => {
@@ -31,7 +31,11 @@ const PoolForm = () => {
   };
 
   return (
-    <div className="w-full text-center py-10">
+    <div className="w-full text-center pt-5 pb-10">
+      <div className=" text-white flex items-center justify-center space-x-6 pb-10">
+      <IoArrowBackOutline />
+      <p className="font-bold">Add Liquidity</p>
+      </div>
       <InputField
       type="number"
         label="Input"
@@ -65,7 +69,7 @@ const PoolForm = () => {
         />
       </InputField>
       {showPoolTable &&     <PoolTable/>}
-      <button onClick={()=>setShowPoolTable(!showPoolTable)} className="w-full md:w-3/4 mt-14 rounded-md bg-[#F3BB1B] px-4 py-[10px] font-semibold cursor-pointer">
+      <button onClick={()=>setShowPoolTable(!showPoolTable)} className="font-bold w-full md:w-3/4 mt-14 rounded-md bg-[#F3BB1B] px-4 py-[10px] cursor-pointer">
         Connect To Wallet
       </button>
 

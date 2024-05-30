@@ -15,13 +15,13 @@ const Home = () => {
   return (
     <div className="flex flex-col md:items-center py-6 justify-center px-4 min-h-screen">
       <div className="text-center">
-        <p className="text-lg md:text-2xl pb-1 text-white">Total Value Locked</p>
+        <p className="text-lg md:text-2xl pb-1 text-white font-bold">Total Value Locked</p>
         <p className="text-3xl md:text-5xl text-[#F3BB1B] font-bold flex items-center justify-center">
           $ <AnimatedNumber value={totalValueLocked}/>
         </p>
       </div>
       
-      <div className="pt-6 pb-2 w-full md:w-2/5">
+      <div className="pt-6 pb-2 w-full md:w-2/6 md:pt-12">
         <Glassmorphosim>
           <SwapForm/>
           
@@ -43,14 +43,14 @@ const Home = () => {
             />
           }
           
-          <p className="text-[#F3BB1B] cursor-pointer mt-2">View Token</p>
+          <p className="text-[#F3BB1B] cursor-pointer mt-2 font-bold">View Token</p>
           
           <div className="flex items-center space-x-2 py-2 md:py-4 font-semibold">
             <img src={Logo} alt="pox-logo" className="w-8 h-8 md:h-auto" />
-            <p className="text-white">POX</p>
+            <p className="text-white font-bold">POX</p>
           </div>
           
-          <button className="w-full md:w-3/4 mt-6 rounded-md bg-[#F3BB1B] px-4 py-[7px] font-semibold cursor-pointer">
+          <button className="font-bold w-full md:w-3/4 mt-6 rounded-md bg-[#F3BB1B] px-4 py-[7px] cursor-pointer">
             Connect To Wallet
           </button>
           

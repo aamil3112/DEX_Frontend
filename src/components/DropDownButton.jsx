@@ -30,13 +30,13 @@ const DropdownButton = ({ selectedOption, onOptionSelect, otherSelectedOption })
       {isOpen && (
         <div
           id="dropdown"
-          className="absolute z-10 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+          className="absolute z-10 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-[#1B0744]"
         >
-          <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+          <ul className="py-2 divide-y-2 divide-slate-400/25 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
             {['POX', 'UXDX',].map((token) => (
               <li key={token}>
                 <p
-                  className={`block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer
+                  className={`block px-4 py-2 hover:bg-gray-100 dark:hover:bg-[#1B0744] dark:hover:text-white cursor-pointer 
                     ${token === otherSelectedOption ? 'cursor-not-allowed text-gray-400' : ''}`}
                   onClick={() => handleOptionClick(token)}
                 >

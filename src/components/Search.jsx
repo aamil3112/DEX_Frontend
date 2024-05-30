@@ -52,7 +52,7 @@ const Search = () => {
     <div ref={searchRef} className="relative mx-auto text-gray-600 mb-6 w-full">
       <form onSubmit={handleSubmit} className="pt-2">
         <input
-          className="border-2 border-gray-300 bg-white px-5 py-3 pr-16 rounded-lg text-sm focus:outline-none w-full"
+          className="shadow-md bg-[#261A4C] px-5 py-3 pr-16 rounded-lg text-sm focus:outline-none w-full"
           type="search"
           name="search"
           placeholder="Enter a name or paste the address to search for a PoxSwap trading pair"
