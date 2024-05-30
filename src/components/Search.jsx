@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const suggestionsData = [
   'apple', 'banana', 'cherry', 'date', 'elderberry', 'fig', 'grape', 'honeydew',
@@ -10,6 +10,7 @@ const suggestionsData = [
 const Search = () => {
   const [query, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
+  const searchRef = useRef(null);
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -34,8 +35,21 @@ const Search = () => {
     setSuggestions([]);
   };
 
+  const handleClickOutside = (event) => {
+    if (searchRef.current && !searchRef.current.contains(event.target)) {
+      setSuggestions([]);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className="relative mx-auto text-gray-600 mb-6 w-full">
+    <div ref={searchRef} className="relative mx-auto text-gray-600 mb-6 w-full">
       <form onSubmit={handleSubmit} className="pt-2">
         <input
           className="border-2 border-gray-300 bg-white px-5 py-3 pr-16 rounded-lg text-sm focus:outline-none w-full"
