@@ -1,7 +1,7 @@
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { tableData } from '../data/data';
-import React from 'react';
+
 
 const TableCom = () => {
   const formatCurrency = (value) => {
@@ -12,26 +12,23 @@ const TableCom = () => {
     return formatCurrency(product.price);
   };
 
-  //  // Custom template for rendering two buttons in the last column
   const actionBodyTemplate = (rowData) => {
     return (
       <div className='flex items-center py-2 space-x-4'>
         <button onClick={() => handleEditClick(rowData)} className="bg-[#F4DBC7] text-[#CC6727] font-semibold hover:text-white p-2 rounded-lg">
-        Add Liquidity
+          Add Liquidity
         </button>
         <button onClick={() => handleDeleteClick(rowData)} className="bg-[#C65711] text-white font-bold py-2 px-4 rounded">
-        Trade
+          Trade
         </button>
       </div>
     );
   };
 
-  // Function to handle edit button click
   const handleEditClick = (rowData) => {
     alert(`Edit button clicked for ${rowData.name}`);
   };
 
-  // Function to handle delete button click
   const handleDeleteClick = (rowData) => {
     alert(`Delete button clicked for ${rowData.name}`);
   };
@@ -46,6 +43,8 @@ const TableCom = () => {
         sortOrder={-1}
         tableStyle={{ minWidth: '50rem', borderRadius: "12px" }}
         responsiveLayout="scroll"
+        paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink"
+        paginatorClassName="custom-paginator" // Added custom class
       >
         <Column
           field="name"
@@ -83,13 +82,13 @@ const TableCom = () => {
           style={{ width: '16%' }}
           headerClassName="yellow-header"
         />
-         <Column
+        <Column
           field="pricechange"
-          header="Price Change"
+          header="Actions"
           sortable
           style={{ width: '20%' }}
           headerClassName="yellow-header yellow-header5"
-          body={actionBodyTemplate} 
+          body={actionBodyTemplate}
         />
       </DataTable>
     </div>

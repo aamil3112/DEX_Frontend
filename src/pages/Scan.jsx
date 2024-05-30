@@ -27,7 +27,7 @@ const Scan = () => {
         </div>
         <div className="bg-white rounded-3xl px-6 py-6 w-full lg:w-1/2">
           <div className="flex flex-row items-center justify-between">
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2">
           <p className="text-lg font-medium">$161,187,730</p>
             <p className="text-green-500">+0.52%</p>
           </div>

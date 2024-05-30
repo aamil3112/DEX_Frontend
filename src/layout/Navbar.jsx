@@ -14,63 +14,63 @@ const Navbar = () => {
   return (
     <nav className="bg-gradient-to-t from-violet-600 via-violet-600 to-indigo-600 text-white relative z-10">
       <div className="flex justify-between items-center px-4 md:px-6 py-3">
-        <div className="flex ">
-        <Link to="/" className="flex items-center space-x-2 pr-20">
-          <img src={Logo} alt="pox-logo" width={30} className="transition-transform duration-300 hover:scale-110" />
-          <p className="border-r-2 pr-2">POX SWAP</p>
-        </Link>
-        <div className="hidden md:flex items-center space-x-6">
-          <ul className="flex justify-between space-x-12">
-            <Link to="/swap">
-              <li
-                className={`cursor-pointer ${
-                  currentPath === "/swap" || currentPath === "/"
-                    ? "rounded-lg bg-yellow-400 px-4 py-[1px]"
-                    : ""
-                }`}
-              >
-                Swap
-              </li>
-            </Link>
-            <Link to="/pool">
-              <li
-                className={`cursor-pointer ${
-                  currentPath === "/pool"
-                    ? "rounded-lg bg-yellow-400 px-4 py-[1px]"
-                    : ""
-                }`}
-              >
-                Pool
-              </li>
-            </Link>
-            <Link to="/scan">
-              <li
-                className={`cursor-pointer ${
-                  currentPath === "/scan"
-                    ? "rounded-lg bg-yellow-400 px-4 py-[1px]"
-                    : ""
-                }`}
-              >
-                Scan
-              </li>
-            </Link>
-            <Link to="/lppools">
-              <li
-                className={`cursor-pointer ${
-                  currentPath === "/lppools"
-                    ? "rounded-lg bg-yellow-400 px-4 py-[1px]"
-                    : ""
-                }`}
-              >
-                LP Pools
-              </li>
-            </Link>
-          </ul> 
+        <div className="flex items-center">
+          <Link to="/" className="flex items-center space-x-2 pr-20">
+            <img src={Logo} alt="pox-logo" width={30} className="transition-transform duration-300 hover:scale-110" />
+            <p className="border-r-2 pr-2">POX SWAP</p>
+          </Link>
+          <div className="hidden md:flex items-center space-x-6">
+            <ul className="flex justify-between space-x-12">
+              <Link to="/swap">
+                <li
+                  className={`cursor-pointer ${
+                    currentPath === "/swap" || currentPath === "/"
+                      ? "rounded-lg bg-yellow-400 px-4 py-[1px]"
+                      : ""
+                  }`}
+                >
+                  Swap
+                </li>
+              </Link>
+              <Link to="/pool">
+                <li
+                  className={`cursor-pointer ${
+                    currentPath === "/pool"
+                      ? "rounded-lg bg-yellow-400 px-4 py-[1px]"
+                      : ""
+                  }`}
+                >
+                  Pool
+                </li>
+              </Link>
+              <Link to="/scan">
+                <li
+                  className={`cursor-pointer ${
+                    currentPath === "/scan"
+                      ? "rounded-lg bg-yellow-400 px-4 py-[1px]"
+                      : ""
+                  }`}
+                >
+                  Scan
+                </li>
+              </Link>
+              <Link to="/lppools">
+                <li
+                  className={`cursor-pointer ${
+                    currentPath === "/lppools"
+                      ? "rounded-lg bg-yellow-400 px-4 py-[1px]"
+                      : ""
+                  }`}
+                >
+                  LP Pools
+                </li>
+              </Link>
+            </ul>
+          </div>
         </div>
-        </div>
-        
+
         <div className="hidden md:flex space-x-8 justify-center items-center">
-         <ul className="flex justify-between space-x-6 divide-x-2">
+          <ul className="flex justify-between space-x-6 divide-x-2">
             <li className="cursor-pointer">LANG</li>
             <li className="pl-4 cursor-pointer">HELP</li>
             <li className="pl-4 cursor-pointer">V1</li>
@@ -78,7 +78,7 @@ const Navbar = () => {
           <button className="rounded-md bg-[#F3BB1B] px-4 py-[7px] font-semibold cursor-pointer">
             Connect To Wallet
           </button>
-          </div> 
+        </div>
 
         {/* Mobile Menu Button */}
         <div className="flex items-center md:hidden">
@@ -102,24 +102,44 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className="absolute top-full left-0 w-full bg-gradient-to-b from-violet-600 via-violet-600 to-indigo-600 text-white px-4 pb-4 md:hidden">
-          <ul className="space-y-4">
-            <Link to="/swap" onClick={toggleMenu} className={`block ${currentPath === "/swap" || currentPath === "/" ? "rounded-lg bg-yellow-400 px-4 py-[1px]" : ""}`}>Swap</Link>
-            <Link to="/pool" onClick={toggleMenu} className={`block ${currentPath === "/pool" ? "rounded-lg bg-yellow-400 px-4 py-[1px]" : ""}`}>Pool</Link>
-            <Link to="/scan" onClick={toggleMenu} className={`block ${currentPath === "/scan" ? "rounded-lg bg-yellow-400 px-4 py-[1px]" : ""}`}>Scan</Link>
-            <Link to="/lppools" onClick={toggleMenu} className={`block ${currentPath === "/lppools" ? "rounded-lg bg-yellow-400 px-4 py-[1px]" : ""}`}>LP Pools</Link>
-            <div className="flex items-center space-x-10">
-              <Link to="#" onClick={toggleMenu} className="block">LANG</Link>
-              <Link to="#" onClick={toggleMenu} className="block">HELP</Link>
-              <Link to="#" onClick={toggleMenu} className="block">V1</Link>
-            </div>
-          </ul>
-          <button className="mt-4 w-full rounded-md bg-[#F3BB1B] px-4 py-2 font-semibold cursor-pointer hover:bg-[#f2a80c] transition-colors duration-300">
-            Connect To Wallet
+      <div className={`mobile-menu ${isOpen ? 'open' : ''}`}>
+        <div className="flex justify-between items-center mb-4">
+          <Link to="/" className="flex items-center space-x-2">
+            <img src={Logo} alt="pox-logo" width={30} className="transition-transform duration-300 hover:scale-110" />
+            <p>POX SWAP</p>
+          </Link>
+          <button className="focus:outline-none" onClick={toggleMenu}>
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M6 18L18 6M6 6l12 12"
+              ></path>
+            </svg>
           </button>
         </div>
-      )}
+        <ul className="space-y-4">
+          <Link to="/swap" onClick={toggleMenu} className={`block ${currentPath === "/swap" || currentPath === "/" ? "rounded-lg bg-yellow-400 px-4 py-[1px]" : ""}`}>Swap</Link>
+          <Link to="/pool" onClick={toggleMenu} className={`block ${currentPath === "/pool" ? "rounded-lg bg-yellow-400 px-4 py-[1px]" : ""}`}>Pool</Link>
+          <Link to="/scan" onClick={toggleMenu} className={`block ${currentPath === "/scan" ? "rounded-lg bg-yellow-400 px-4 py-[1px]" : ""}`}>Scan</Link>
+          <Link to="/lppools" onClick={toggleMenu} className={`block ${currentPath === "/lppools" ? "rounded-lg bg-yellow-400 px-4 py-[1px]" : ""}`}>LP Pools</Link>
+          <div className="flex items-center space-x-10">
+            <Link to="#" onClick={toggleMenu} className="block">LANG</Link>
+            <Link to="#" onClick={toggleMenu} className="block">HELP</Link>
+            <Link to="#" onClick={toggleMenu} className="block">V1</Link>
+          </div>
+        </ul>
+        <button className="mt-4 w-full rounded-md bg-[#F3BB1B] px-4 py-2 font-semibold cursor-pointer hover:bg-[#f2a80c] transition-colors duration-300">
+          Connect To Wallet
+        </button>
+      </div>
     </nav>
   );
 };
