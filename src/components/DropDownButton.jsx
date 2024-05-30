@@ -20,7 +20,7 @@ const DropdownButton = ({ selectedOption, onOptionSelect, otherSelectedOption })
       <button
         id="dropdownDefaultButton"
         onClick={toggleDropdown}
-        className="text-black font-medium rounded-lg text-sm px-5 text-center inline-flex items-center"
+        className="text-gray-300 font-medium rounded-lg text-sm px-5 text-center inline-flex items-center"
         type="button"
       >
         {selectedOption}

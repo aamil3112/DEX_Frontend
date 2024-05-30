@@ -36,6 +36,7 @@ const Home = () => {
           
           {showRecipient && 
             <InputField
+            type="text"
               label="Recipient"
               placeholder="Input wallet Address"
               onChange={(e) => setFromAmount(e.target.value)}

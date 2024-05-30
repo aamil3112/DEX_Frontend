@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { TbArrowsDownUp } from "react-icons/tb";
 import DropdownButton from "../components/DropDownButton";
 import InputField from "../components/InputField";
@@ -43,6 +43,7 @@ const SwapForm = () => {
   return (
     <div className="w-full pt-6 md:pt-12">
       <InputField
+      type="number"
         label="From"
         placeholder="Enter an amount"
         value={fromAmount}
@@ -55,9 +56,10 @@ const SwapForm = () => {
         />
       </InputField>
 
-      <TbArrowsDownUp size={20} className="my-4 md:my-8" style={{ cursor: "pointer" }} onClick={handleSwap} />
+      <TbArrowsDownUp size={20} className="my-4 md:my-8" style={{ cursor: "pointer" }} onClick={handleSwap} color="white" />
 
       <InputField
+      type="number"
         label="To"
         placeholder="Enter an amount"
         value={toAmount}

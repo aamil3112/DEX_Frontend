@@ -33,6 +33,7 @@ const PoolForm = () => {
   return (
     <div className="w-full text-center py-10">
       <InputField
+      type="number"
         label="Input"
         placeholder="Enter an amount"
         value={fromAmount}
@@ -51,6 +52,7 @@ const PoolForm = () => {
       </div>
 
       <InputField
+      type="number"
         label="Input"
         placeholder="Enter an amount"
         value={toAmount}
