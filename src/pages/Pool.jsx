@@ -33,10 +33,10 @@ const Pool = () => {
                 <p className="text-white font-medium">Your Liquidity</p>
                 <BsQuestionCircle color="#F3BB1B" size={20} />
               </div>
-              <div className="w-full md:w-2/3 flex flex-row justify-center items-center mt-10 space-y-0 md:space-x-4">
-                <div className="flex items-center space-x-[3.5px] md:space-x-3 w-full md:w-auto rounded-md bg-white px-1 md:px-4 text-sm py-[7px] text-black font-semibold cursor-pointer">
+              <div className="min-w-max w-2/3 flex flex-row justify-center items-center mt-10 space-y-0 space-x-4">
+                <div className="flex justify-center space-x-2 items-center md:space-x-3 w-full md:w-auto rounded-md bg-white px-1 md:px-4 text-sm py-[7px] text-black font-semibold cursor-pointer">
                   <IoWalletOutline size={20} />
-                  <button>Connect to a wallet to view your liquidity</button>
+                  <button>view your liquidity</button>
                 </div>
                 <IoMdArrowForward size={24} color="white" />
               </div>

@@ -28,7 +28,7 @@ const Home = () => {
           <div className="flex items-center justify-end mt-2 mb-6 w-full cursor-pointer">
             <button onClick={() => setShowRecipient(!showRecipient)} className="flex items-center space-x-1 text-green-500">
               {showRecipient ? <GrSubtract size={20} /> : <IoAddOutline size={20} /> }
-              <p>
+              <p className="font-bold">
                 {showRecipient ? "Remove Recipient" : "Add Recipient"}
               </p>
             </button>

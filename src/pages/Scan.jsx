@@ -10,17 +10,17 @@ const Scan = () => {
       <Search />
       <div className="pl-4 pb-4 flex flex-col sm:flex-row flex-wrap items-start 
       sm:items-center space-y-2 sm:space-y-0 sm:space-x-6 text-white">
-  <p className="text-lg md:text-xl font-bold">POX Price: $0.1223</p>
-  <p className="font-medium">Pairs: 20,606</p>
-  <p className="font-medium">Transactions (24hr): 2,464</p>
-  <p className="font-medium">New Pairs (24hr): 0</p>
+  <p className="text-lg md:text-xl font-bold">POX Price: <span className="text-green-500">$0.1223</span></p>
+  <p className="font-medium">Pairs: <span className="text-green-500">20,606</span></p>
+  <p className="font-medium">Transactions (24hr): <span className="text-green-500">2,464</span></p>
+  <p className="font-medium">New Pairs (24hr): <span className="text-green-500">0</span></p>
 </div>
 
       <div className="flex flex-col lg:flex-row justify-between items-center space-y-6 lg:space-y-0 lg:space-x-6">
         <div className="bg-white rounded-3xl px-2 md:px-6 lg:px-6 py-4 md:py-6 lg:py-6 w-full lg:w-1/2">
-          <p>Liquidity</p>
+          <p className="pl-4">Liquidity</p>
           <div className="flex items-center space-x-4">
-            <p className="text-lg font-medium">$161,187,730</p>
+            <p className="text-lg font-medium pl-4">$161,187,730</p>
             <p className="text-green-500">+0.52%</p>
           </div>
           <AreaChartComp />
