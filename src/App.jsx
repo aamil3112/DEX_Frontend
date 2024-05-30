@@ -1,10 +1,18 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Home, Lppools, Pool, Scan } from "./pages";
 import Navbar from "./layout/Navbar";
+import bgImage from "./assets/bgImage.jpg";
 
 function App() {
   return (
-    <div className="bg-gradient-to-t from-violet-600 to-indigo-600">
+    <div
+      style={{
+        backgroundImage: `url(${bgImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        minHeight: '100vh',
+      }}
+    >
       <Router>
         <Navbar />
         <Routes>

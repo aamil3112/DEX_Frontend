@@ -47,7 +47,7 @@ const Home = () => {
           
           <div className="flex items-center space-x-2 py-2 md:py-4 font-semibold">
             <img src={Logo} alt="pox-logo" className="w-8 h-8 md:h-auto" />
-            <p>POX</p>
+            <p className="text-white">POX</p>
           </div>
           
           <button className="w-full md:w-3/4 mt-6 rounded-md bg-[#F3BB1B] px-4 py-[7px] font-semibold cursor-pointer">
