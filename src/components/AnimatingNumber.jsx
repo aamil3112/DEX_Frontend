@@ -1,6 +1,10 @@
 import { useSpring, animated } from '@react-spring/web';
 import PropTypes from 'prop-types';
 
+const formatNumberWithCommas = (number) => {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
+
 const AnimatedNumber = ({ value }) => {
   const { number } = useSpring({
     from: { number: 400000000 },
@@ -10,8 +14,8 @@ const AnimatedNumber = ({ value }) => {
   });
 
   return (
-    <animated.div className={"mx-3"}>
-      {number.to(n => n.toFixed(0))}
+    <animated.div className="mx-3">
+      {number.to(n => formatNumberWithCommas(n.toFixed(0)))}
     </animated.div>
   );
 };
