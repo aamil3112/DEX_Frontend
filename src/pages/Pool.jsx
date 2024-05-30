@@ -12,7 +12,7 @@ const Pool = () => {
   const [showPoolForm, setShowPoolForm] = useState(false);
 
   return (
-    <div className="flex min-h-screen flex-col md:items-center justify-center py-12 px-4">
+    <div className="flex min-h-screen flex-col md:items-center justify-center py-6 px-4">
       <div className="text-center">
         <p className="text-2xl pb-1 text-white">Total Value Locked</p>
         <p className="text-5xl text-[#F3BB1B] font-bold flex items-center justify-center ">
