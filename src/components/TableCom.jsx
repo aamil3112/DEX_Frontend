@@ -34,7 +34,7 @@ const TableCom = () => {
   };
 
   return (
-    <div className="card bg-white rounded-3xl pb-6 overflow-x-auto">
+    <div className="card bg-white rounded-3xl overflow-x-auto">
       <DataTable
         value={tableData}
         paginator

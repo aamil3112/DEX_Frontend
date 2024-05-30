@@ -61,7 +61,7 @@ const Search = () => {
         />
         <button type="submit" className="absolute right-2 top-1 mt-5 mr-4">
           <svg
-            className="text-gray-600 h-4 w-4 fill-current"
+            className="text-yellow-600 h-4 w-4 fill-current"
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
             version="1.1"

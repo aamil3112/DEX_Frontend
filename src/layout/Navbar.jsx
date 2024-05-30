@@ -11,8 +11,18 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
+ 
+    let account;
+    const connectMetaMask = async () => {
+      const accounts = await ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      account = accounts[0];
+      document.getElementById("accountArea").innerHTML = account;
+    };
+
   return (
-    <nav className="bg-gradient-to-t from-violet-600 via-violet-600 to-indigo-600 text-white relative z-10">
+    <nav className="bg-gradient-to-t from-violet-600 via-violet-600 to-indigo-600 text-white relative z-10 shadow-2xl shadow-purple-800">
       <div className="flex justify-between items-center px-4 md:px-6 py-3">
         <div className="flex items-center">
           <Link to="/" className="flex items-center space-x-2 pr-20">
@@ -75,7 +85,7 @@ const Navbar = () => {
             <li className="pl-4 cursor-pointer">HELP</li>
             <li className="pl-4 cursor-pointer">V1</li>
           </ul>
-          <button className="font-bold text-black rounded-md bg-[#F3BB1B] px-4 py-[7px] cursor-pointer">
+          <button onClick={connectMetaMask} className="font-bold text-black rounded-md bg-[#F3BB1B] px-4 py-[7px] cursor-pointer">
             Connect To Wallet
           </button>
         </div>
