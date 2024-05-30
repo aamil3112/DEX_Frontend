@@ -2,6 +2,7 @@ import { useState } from "react";
 import DropdownButton from "../components/DropDownButton";
 import InputField from "../components/InputField";
 import { IoAddOutline } from "react-icons/io5";
+import PoolTable from "./PoolTable";
 
 const PoolForm = () => {
   const [fromAmount, setFromAmount] = useState(0);
@@ -9,6 +10,7 @@ const PoolForm = () => {
   const [fromToken, setFromToken] = useState("Select a token");
   const [toToken, setToToken] = useState("Select a token");
   const [error, setError] = useState("");
+  const[showPoolTable, setShowPoolTable] = useState(false);
 
   const handleFromTokenSelect = (token) => {
     if (token === toToken) {
@@ -31,7 +33,7 @@ const PoolForm = () => {
   return (
     <div className="w-full text-center py-10">
       <InputField
-        label="From"
+        label="Input"
         placeholder="Enter an amount"
         value={fromAmount}
         onChange={(e) => setFromAmount(e.target.value)}
@@ -43,13 +45,13 @@ const PoolForm = () => {
         />
       </InputField>
 
-      <div className="flex flex-col md:flex-row justify-center items-center md:items-start md:space-x-4">
+      <div className="flex flex-row justify-between items-center md:items-start md:space-x-4 text-white">
         <IoAddOutline className="my-6 md:mt-12" />
         <p className="md:mt-12">Advanced Settings</p>
       </div>
 
       <InputField
-        label="To"
+        label="Input"
         placeholder="Enter an amount"
         value={toAmount}
         onChange={(e) => setToAmount(e.target.value)}
@@ -60,7 +62,8 @@ const PoolForm = () => {
           otherSelectedOption={fromToken}
         />
       </InputField>
-      <button className="w-full md:w-3/4 mt-14 rounded-md bg-[#F3BB1B] px-4 py-[10px] font-semibold cursor-pointer">
+      {showPoolTable &&     <PoolTable/>}
+      <button onClick={()=>setShowPoolTable(!showPoolTable)} className="w-full md:w-3/4 mt-14 rounded-md bg-[#F3BB1B] px-4 py-[10px] font-semibold cursor-pointer">
         Connect To Wallet
       </button>
 

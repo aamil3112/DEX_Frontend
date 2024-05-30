@@ -3,7 +3,7 @@ import { Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis, ResponsiveContai
 
 const AreaChartComp = () => {
   return (
-    <div className="w-full h-96"> {/* Full width and fixed height */}
+    <div className="w-full h-96 pt-4"> {/* Full width and fixed height */}
       <ResponsiveContainer>
         <AreaChart data={data} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
           <defs>

@@ -26,14 +26,14 @@ const TableCom = () => {
           field="name"
           header="Name"
           sortable
-          style={{ width: '20%', padding: "12px" }}
+          style={{ width: '16%', padding: "12px" }}
           headerClassName="yellow-header yellow-header1"
         />
         <Column
           field="liquidity"
           header="Liquidity"
           sortable
-          style={{ width: '20%' }}
+          style={{ width: '16%' }}
           headerClassName="yellow-header"
         />
         <Column
@@ -41,17 +41,24 @@ const TableCom = () => {
           header="Volume"
           body={priceBodyTemplate}
           sortable
-          style={{ width: '20%' }}
+          style={{ width: '16%' }}
           headerClassName="yellow-header"
         />
         <Column
           field="price"
           header="Price"
           sortable
-          style={{ width: '20%' }}
+          style={{ width: '16%' }}
           headerClassName="yellow-header"
         />
         <Column
+          field="pricechange"
+          header="Price Change"
+          sortable
+          style={{ width: '16%' }}
+          headerClassName="yellow-header"
+        />
+         <Column
           field="pricechange"
           header="Price Change"
           sortable

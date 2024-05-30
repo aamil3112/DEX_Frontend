@@ -12,15 +12,14 @@ const Pool = () => {
   const [showPoolForm, setShowPoolForm] = useState(false);
 
   return (
-    <div className="flex bg-purple-500 min-h-screen flex-col md:items-center justify-center py-12 px-4">
+    <div className="flex min-h-screen flex-col md:items-center justify-center py-12 px-4">
       <div className="text-center">
-        <p className="text-2xl pb-1">Total Value Locked</p>
-        <p className="text-5xl text-[#F3BB1B] font-bold flex items-center justify-center">
+        <p className="text-2xl pb-1 text-white">Total Value Locked</p>
+        <p className="text-5xl text-[#F3BB1B] font-bold flex items-center justify-center ">
           $ <AnimatedNumber value={totalValueLocked} />
         </p>
       </div>
-
-      <div className="pt-6 pb-2 w-full md:w-2/3">
+      <div className="pt-6 pb-2 w-full md:w-2/5">
         <Glassmorphosim>
           {!showPoolForm ? (
             <>
@@ -34,8 +33,8 @@ const Pool = () => {
                 <p className="text-white font-medium">Your Liquidity</p>
                 <BsQuestionCircle color="#F3BB1B" size={20} />
               </div>
-              <div className="w-full md:w-2/3 flex flex-col md:flex-row justify-center items-center mt-10 space-y-4 md:space-y-0 md:space-x-4">
-                <div className="flex items-center space-x-3 w-full md:w-auto rounded-md bg-white px-4 text-sm py-[7px] text-black font-semibold cursor-pointer">
+              <div className="w-full md:w-2/3 flex flex-row justify-center items-center mt-10 space-y-0 md:space-x-4">
+                <div className="flex items-center space-x-[3.5px] md:space-x-3 w-full md:w-auto rounded-md bg-white px-1 md:px-4 text-sm py-[7px] text-black font-semibold cursor-pointer">
                   <IoWalletOutline size={20} />
                   <button>Connect to a wallet to view your liquidity</button>
                 </div>

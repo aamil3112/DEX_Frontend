@@ -4,7 +4,7 @@ import Navbar from "./layout/Navbar";
 
 function App() {
   return (
-    <>
+    <div className="bg-gradient-to-t from-violet-600 to-indigo-600">
       <Router>
         <Navbar />
         <Routes>
@@ -15,7 +15,7 @@ function App() {
           <Route path="/lppools" element={<Lppools />} />
         </Routes>
       </Router>
-    </>
+    </div>
   );
 }
 

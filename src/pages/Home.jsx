@@ -13,7 +13,7 @@ const Home = () => {
   const [showRecipient, setShowRecipient] = useState(false);
   
   return (
-    <div className="flex flex-col md:items-center justify-center py-12  px-4 bg-purple-500">
+    <div className="flex flex-col md:items-center justify-center py-6  px-4 min-h-screen">
       <div className="text-center">
         <p className="text-lg md:text-2xl pb-1 text-white">Total Value Locked</p>
         <p className="text-3xl md:text-5xl text-[#F3BB1B] font-bold flex items-center justify-center">
@@ -21,7 +21,7 @@ const Home = () => {
         </p>
       </div>
       
-      <div className="pt-6 pb-2 w-full md:w-2/3">
+      <div className="pt-6 pb-2 w-full md:w-2/5">
         <Glassmorphosim>
           <SwapForm/>
           
