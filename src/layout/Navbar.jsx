@@ -1,32 +1,83 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import Logo from "../assets/Logo.png";
+import { ethers } from "ethers";
 
 const Navbar = () => {
   const location = useLocation();
   const currentPath = location.pathname;
   const [isOpen, setIsOpen] = useState(false);
+  const [data, setData] = useState({
+    address: null,
+    balance: null,
+  });
+
+  function truncateString(str, maxLength) {
+    if (str.length <= maxLength) {
+      return str; // If string length is within or equal to maxLength, return the original string
+    } else {
+      const truncatedString =
+        str.substring(0, Math.floor(maxLength / 2)) +
+        "..." +
+        str.substring(str.length - Math.floor(maxLength / 2));
+      return truncatedString; // If string length exceeds maxLength, return a truncated version with ellipsis
+    }
+  }
+
+  // Button handler button for handling a
+  // request event for metamask
+  const connectMetaMask = () => {
+    if (window.ethereum) {
+      window.ethereum
+        .request({ method: "eth_requestAccounts" })
+        .then((res) => accountChangeHandler(res[0]))
+        .catch((error) => console.error("Error connecting MetaMask:", error));
+    } else {
+      alert("Install MetaMask extension!!");
+    }
+  };
+
+  const getBalance = (address) => {
+    if (!address) return; // Ensure address is provided
+    window.ethereum
+      .request({
+        method: "eth_getBalance",
+        params: [address, "latest"],
+      })
+      .then((balance) => {
+        setData({
+          ...data,
+          balance: ethers.utils.formatEther(balance),
+        });
+      })
+      .catch((error) => console.error("Error getting balance:", error));
+  };
+
+  const accountChangeHandler = (account) => {
+    const truncatedAddress = truncateString(account, 12);
+    setData({
+      ...data,
+      address: truncatedAddress,
+    });
+    getBalance(account);
+  };
+  console.log(data);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-
- 
-    let account;
-    const connectMetaMask = async () => {
-      const accounts = await ethereum.request({
-        method: "eth_requestAccounts",
-      });
-      account = accounts[0];
-      document.getElementById("accountArea").innerHTML = account;
-    };
 
   return (
     <nav className="bg-gradient-to-t from-violet-600 via-violet-600 to-indigo-600 text-white relative z-10 shadow-2xl shadow-purple-800">
       <div className="flex justify-between items-center px-4 md:px-6 py-3">
         <div className="flex items-center">
           <Link to="/" className="flex items-center space-x-2 pr-20">
-            <img src={Logo} alt="pox-logo" width={30} className="transition-transform duration-300 hover:scale-110" />
+            <img
+              src={Logo}
+              alt="pox-logo"
+              width={30}
+              className="transition-transform duration-300 hover:scale-110"
+            />
             <p className="border-r-2 pr-2 font-bold">POX SWAP</p>
           </Link>
           <div className="hidden md:flex items-center space-x-6">
@@ -85,8 +136,13 @@ const Navbar = () => {
             <li className="pl-4 cursor-pointer">HELP</li>
             <li className="pl-4 cursor-pointer">V1</li>
           </ul>
-          <button onClick={connectMetaMask} className="font-bold text-black rounded-md bg-[#F3BB1B] px-4 py-[7px] cursor-pointer">
-            Connect To Wallet
+          <button
+            onClick={connectMetaMask}
+            className="font-bold text-black rounded-md bg-[#F3BB1B] px-4 py-[7px] cursor-pointer"
+          >
+            {data && data.address && data.address.length > 0
+              ? data.address
+              : "Connect To Wallet"}
           </button>
         </div>
 
@@ -112,10 +168,15 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div className={`mobile-menu ${isOpen ? 'open' : ''}`}>
+      <div className={`mobile-menu ${isOpen ? "open" : ""}`}>
         <div className="flex justify-between items-center mb-4">
           <Link to="/" className="flex items-center space-x-2">
-            <img src={Logo} alt="pox-logo" width={30} className="transition-transform duration-300 hover:scale-110" />
+            <img
+              src={Logo}
+              alt="pox-logo"
+              width={30}
+              className="transition-transform duration-300 hover:scale-110"
+            />
             <p className="font-bold">POX SWAP</p>
           </Link>
           <button className="focus:outline-none" onClick={toggleMenu}>
@@ -136,18 +197,67 @@ const Navbar = () => {
           </button>
         </div>
         <ul className="space-y-4 font-bold">
-          <Link to="/swap" onClick={toggleMenu} className={`block ${currentPath === "/swap" || currentPath === "/" ? "text-black rounded-lg bg-yellow-400 px-4 py-[1px]" : ""}`}>Swap</Link>
-          <Link to="/pool" onClick={toggleMenu} className={`block ${currentPath === "/pool" ? "text-black rounded-lg bg-yellow-400 px-4 py-[1px]" : ""}`}>Pool</Link>
-          <Link to="/scan" onClick={toggleMenu} className={`block ${currentPath === "/scan" ? "text-black rounded-lg bg-yellow-400 px-4 py-[1px]" : ""}`}>Scan</Link>
-          <Link to="/lppools" onClick={toggleMenu} className={`block ${currentPath === "/lppools" ? "text-black rounded-lg bg-yellow-400 px-4 py-[1px]" : ""}`}>LP Pools</Link>
+          <Link
+            to="/swap"
+            onClick={toggleMenu}
+            className={`block ${
+              currentPath === "/swap" || currentPath === "/"
+                ? "text-black rounded-lg bg-yellow-400 px-4 py-[1px]"
+                : ""
+            }`}
+          >
+            Swap
+          </Link>
+          <Link
+            to="/pool"
+            onClick={toggleMenu}
+            className={`block ${
+              currentPath === "/pool"
+                ? "text-black rounded-lg bg-yellow-400 px-4 py-[1px]"
+                : ""
+            }`}
+          >
+            Pool
+          </Link>
+          <Link
+            to="/scan"
+            onClick={toggleMenu}
+            className={`block ${
+              currentPath === "/scan"
+                ? "text-black rounded-lg bg-yellow-400 px-4 py-[1px]"
+                : ""
+            }`}
+          >
+            Scan
+          </Link>
+          <Link
+            to="/lppools"
+            onClick={toggleMenu}
+            className={`block ${
+              currentPath === "/lppools"
+                ? "text-black rounded-lg bg-yellow-400 px-4 py-[1px]"
+                : ""
+            }`}
+          >
+            LP Pools
+          </Link>
           <div className="flex items-center space-x-10">
-            <Link to="#" onClick={toggleMenu} className="block">LANG</Link>
-            <Link to="#" onClick={toggleMenu} className="block">HELP</Link>
-            <Link to="#" onClick={toggleMenu} className="block">V1</Link>
+            <Link to="#" onClick={toggleMenu} className="block">
+              LANG
+            </Link>
+            <Link to="#" onClick={toggleMenu} className="block">
+              HELP
+            </Link>
+            <Link to="#" onClick={toggleMenu} className="block">
+              V1
+            </Link>
           </div>
         </ul>
-        <button className="font-bold mt-4 w-full rounded-md text-black bg-[#F3BB1B] px-4 py-2 cursor-pointer hover:bg-[#f2a80c] transition-colors duration-300">
-          Connect To Wallet
+        <button
+        onClick={connectMetaMask} className="font-bold mt-4 w-full rounded-md text-black bg-[#F3BB1B] px-4 py-2 cursor-pointer hover:bg-[#f2a80c] transition-colors duration-300">
+          {data && data.address && data.address.length > 0
+              ? data.address
+              : "Connect To Wallet"}
         </button>
       </div>
     </nav>

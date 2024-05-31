@@ -39,7 +39,7 @@
   position: absolute;
   top: 0;
   left: -100%;
-  width: 100%;
+  width: 70%;
   height: 100vh;
   background: linear-gradient(to bottom, #7c3aed, #7c3aed, #4f46e5);
   color: white;
@@ -104,6 +104,3 @@
   background-color: black;
   color: white;
 }
-
-
-
