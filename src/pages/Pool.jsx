@@ -12,7 +12,7 @@ const Pool = () => {
   const [showPoolForm, setShowPoolForm] = useState(false);
 
   return (
-    <div className="flex pt-36 min-h-screen flex-col md:items-center justify-center md:justify-start md:py-36 px-4">
+    <div className="flex pt-0 md:pt-36 lg:pt-36 min-h-screen flex-col md:items-center justify-center md:justify-start md:py-36 px-4">
       <div className="text-center">
         <p className="text-2xl pb-1 text-white font-bold">Total Value Locked</p>
         <p className="text-5xl text-[#F3BB1B] font-bold flex items-center justify-center ">
@@ -25,7 +25,7 @@ const Pool = () => {
             <>
               <button
                 onClick={() => setShowPoolForm(!showPoolForm)}
-                className="font-bold w-full md:w-2/3 mt-6 rounded-md bg-[#F3BB1B] px-4 py-[14px] text-xl cursor-pointer"
+                className="font-bold w-full md:w-2/3 mt-6 rounded-md bg-[#fcc93f] px-4 py-[14px] text-xl cursor-pointer"
               >
                 Add Liquidity
               </button>

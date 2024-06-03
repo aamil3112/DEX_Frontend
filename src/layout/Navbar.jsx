@@ -68,7 +68,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gradient-to-t from-violet-600 via-violet-600 to-indigo-600 text-white relative z-10 shadow-2xl shadow-purple-800">
+    <nav className="bg-gradient-to-t from-violet-800  to-indigo-800 text-white relative z-10 shadow-2xl shadow-violet-800">
       <div className="flex justify-between items-center px-4 md:px-6 py-3">
         <div className="flex items-center">
           <Link to="/" className="flex items-center space-x-2 pr-20">
