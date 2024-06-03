@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import Logo from "../assets/Logo.png";
 import { ethers } from "ethers";
+import { TbCopyCheck,TbCopyCheckFilled } from "react-icons/tb";
 
 const Navbar = () => {
   const location = useLocation();
@@ -11,6 +12,7 @@ const Navbar = () => {
     address: null,
     balance: null,
   });
+  const[ isCopy, setIsCopy] = useState(false);
 
   function truncateString(str, maxLength) {
     if (str.length <= maxLength) {
@@ -66,6 +68,11 @@ const Navbar = () => {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  const handleCopy =(address)=>{
+    navigator.clipboard.writeText(address)
+    setIsCopy(!isCopy)
+  }
 
   return (
     <nav className="bg-gradient-to-t from-violet-800  to-indigo-800 text-white relative z-10 shadow-2xl shadow-violet-800">
@@ -141,7 +148,12 @@ const Navbar = () => {
             className="font-bold text-black rounded-md bg-[#F3BB1B] px-4 py-[7px] cursor-pointer"
           >
             {data && data.address && data.address.length > 0
-              ? data.address
+              ? (
+                <div className="flex flex-row items-center space-x-4">
+                <p>{data.address}</p>
+                {isCopy ?<TbCopyCheckFilled size={22} />:  <TbCopyCheck size={22} onClick={()=>handleCopy(data?.address)} />}
+                </div>
+              )
               : "Connect To Wallet"}
           </button>
         </div>
