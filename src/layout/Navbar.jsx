@@ -13,18 +13,19 @@ const Navbar = () => {
     balance: null,
   });
   const[ isCopy, setIsCopy] = useState(false);
-
   function truncateString(str, maxLength) {
-    if (str.length <= maxLength) {
+    if (str?.length>0 && str?.length <= maxLength) {
       return str; // If string length is within or equal to maxLength, return the original string
     } else {
       const truncatedString =
-        str.substring(0, Math.floor(maxLength / 2)) +
+        str?.substring(0, Math.floor(maxLength / 2)) +
         "..." +
-        str.substring(str.length - Math.floor(maxLength / 2));
+        str?.substring(str?.length - Math.floor(maxLength / 2));
       return truncatedString; // If string length exceeds maxLength, return a truncated version with ellipsis
     }
   }
+
+  const truncatedAddress = truncateString(data?.address, 10);
 
   // Button handler button for handling a
   // request event for metamask
@@ -56,10 +57,9 @@ const Navbar = () => {
   };
 
   const accountChangeHandler = (account) => {
-    const truncatedAddress = truncateString(account, 12);
     setData({
       ...data,
-      address: truncatedAddress,
+      address: account,
     });
     getBalance(account);
   };
@@ -150,7 +150,7 @@ const Navbar = () => {
             {data && data.address && data.address.length > 0
               ? (
                 <div className="flex flex-row items-center space-x-4">
-                <p>{data.address}</p>
+                  <p>{truncatedAddress}</p>
                 {isCopy ?<TbCopyCheckFilled size={22} />:  <TbCopyCheck size={22} onClick={()=>handleCopy(data?.address)} />}
                 </div>
               )
@@ -268,7 +268,12 @@ const Navbar = () => {
         <button
         onClick={connectMetaMask} className="font-bold mt-4 w-full rounded-md text-black bg-[#F3BB1B] px-4 py-2 cursor-pointer hover:bg-[#f2a80c] transition-colors duration-300">
           {data && data.address && data.address.length > 0
-              ? data.address
+              ? (
+                <div className="flex flex-row items-center space-x-4">
+                  <p>{truncatedAddress}</p>
+                {isCopy ?<TbCopyCheckFilled size={22} />:  <TbCopyCheck size={22} onClick={()=>handleCopy(data?.address)} />}
+                </div>
+              )
               : "Connect To Wallet"}
         </button>
       </div>
