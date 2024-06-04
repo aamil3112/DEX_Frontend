@@ -1,0 +1,50 @@
+.app-background {
+  position: relative;
+  background: black;
+  overflow: hidden;
+}
+
+.routes-container {
+  position: relative;
+  width: 100%;
+  z-index: 10;
+  pointer-events:none;
+}
+
+.logo {
+  position: absolute;
+  z-index: 1;
+  filter: blur(4px); 
+  transition: filter 0.5s ease;
+}
+
+.logo:hover {
+  filter: none; 
+}
+
+.logo img {
+  position: relative;
+  cursor: pointer;
+  width: 100px;
+  top: 100px; 
+  object-fit: cover;
+  border: solid transparent 2px;
+  border-radius: 50%; 
+  padding: 0;
+  animation: animateBounce 3s ease-in-out infinite alternate;
+  transition: border 0.5s ease, padding 0.5s ease; 
+}
+
+.logo img:hover {
+  border: solid white 2px;
+  padding: 10px;
+}
+
+@keyframes animateBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
