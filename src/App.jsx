@@ -30,13 +30,6 @@ function getRandomRotation() {
 }
 
 function App() {
-  const logos = [
-    { src: Logo, name: "POX" },
-    { src: Logo2, name: "UXDX" },
-  ];
-
-  const numInstances = 5; 
-
   const [positions, setPositions] = useState([]);
   const [disableRoutes, setDisableRoutes] = useState(false);
 
