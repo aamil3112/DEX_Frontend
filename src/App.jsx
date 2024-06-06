@@ -18,8 +18,8 @@ function getRandomRotation() {
 
 function App() {
   const logos = [
-    { src: Logo, name: "Logo 1" },
-    { src: Logo2, name: "Logo 2" },
+    { src: Logo, name: "POX" },
+    { src: Logo2, name: "UXDX" },
   ];
 
   const numInstances = 5; 
