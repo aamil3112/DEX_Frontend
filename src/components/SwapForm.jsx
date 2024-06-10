@@ -44,6 +44,7 @@ const SwapForm = () => {
     }
   };
 
+  console.log(fromAmount,toAmount,fromToken,toToken)
   return (
     <div className="w-full pt-6 md:pt-12">
       <InputField

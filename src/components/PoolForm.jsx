@@ -1,8 +1,10 @@
 import { useState } from "react";
 import DropdownButton from "../components/DropDownButton";
 import InputField from "../components/InputField";
-import { IoAddOutline, IoArrowBackOutline  } from "react-icons/io5";
+import { IoAddOutline, IoArrowBackOutline } from "react-icons/io5";
 import PoolTable from "./PoolTable";
+import { getAddLiquidity } from "../utils/Axios";
+import SuccessModal from "./SuccessModal";
 
 const PoolForm = () => {
   const [fromAmount, setFromAmount] = useState(0);
@@ -10,7 +12,22 @@ const PoolForm = () => {
   const [fromToken, setFromToken] = useState("Select a token");
   const [toToken, setToToken] = useState("Select a token");
   const [error, setError] = useState("");
-  const[showPoolTable, setShowPoolTable] = useState(false);
+  const [showPoolTable, setShowPoolTable] = useState(false);
+  const [isShowModal,setIsShowModal] = useState(false);
+
+  const handleGetAddLiquidity = async () => {
+    const data = await getAddLiquidity(
+      fromAmount,
+      toAmount,
+      fromToken,
+      toToken
+    );
+    console.log(data);
+    if (data?.statusCode == 200) {
+      setIsShowModal(!isShowModal);
+      return;
+    }
+  };
 
   const handleFromTokenSelect = (token) => {
     if (token === toToken) {
@@ -33,11 +50,11 @@ const PoolForm = () => {
   return (
     <div className="w-full text-center pt-5 pb-10">
       <div className=" text-white flex items-center justify-center space-x-6 pb-10">
-      <IoArrowBackOutline />
-      <p className="font-bold">Add Liquidity</p>
+        <IoArrowBackOutline />
+        <p className="font-bold">Add Liquidity</p>
       </div>
       <InputField
-      type="number"
+        type="number"
         label="Input"
         placeholder="Enter an amount"
         value={fromAmount}
@@ -56,7 +73,7 @@ const PoolForm = () => {
       </div>
 
       <InputField
-      type="number"
+        type="number"
         label="Input"
         placeholder="Enter an amount"
         value={toAmount}
@@ -68,15 +85,18 @@ const PoolForm = () => {
           otherSelectedOption={fromToken}
         />
       </InputField>
-      {showPoolTable &&     <PoolTable/>}
-      <button onClick={()=>setShowPoolTable(!showPoolTable)} className="font-bold w-full md:w-3/4 mt-14 rounded-md bg-[#F3BB1B] px-4 py-[10px] cursor-pointer">
+      {showPoolTable && <PoolTable />}
+      <button
+        onClick={handleGetAddLiquidity}
+        className="font-bold w-full md:w-3/4 mt-14 rounded-md bg-[#F3BB1B] px-4 py-[10px] cursor-pointer"
+      >
         Connect To Wallet
       </button>
 
       {error && <p className="text-red-500 mt-2">{error}</p>}
+      {isShowModal && <SuccessModal/>}
     </div>
   );
 };
-
 
 export default PoolForm;

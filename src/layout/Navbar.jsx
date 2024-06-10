@@ -61,6 +61,7 @@ const Navbar = () => {
       ...data,
       address: account,
     });
+    localStorage.setItem("walletAddress",account);
     getBalance(account);
   };
   console.log(data);
