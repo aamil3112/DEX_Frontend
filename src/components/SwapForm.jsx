@@ -28,7 +28,7 @@ const SwapForm = () => {
 
     const debounceTimer = setTimeout(() => {
       getSwap(walletAddress?.address,fromAmount, fromToken, toToken);
-    }, 1000);
+    }, 500);
 
     return () => clearTimeout(debounceTimer);
   }, [fromAmount, toAmount, fromToken, toToken]);

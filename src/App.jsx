@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import Logo from "./assets/Logo.png";
@@ -41,6 +41,39 @@ function App() {
   );
 }
 
+function LogoComponent({ position }) {
+  const logo = useMemo(() => {
+    const index = Math.floor(Math.random() * LOGOS.length);
+    return LOGOS[index];
+  }, []);
+
+  const rotation = useMemo(() => getRandomRotation(), []);
+
+  return (
+    <div
+      className="logo"
+      data-name={logo.name}
+      style={{
+        top: position.y,
+        left: position.x,
+        transform: `rotate(${rotation}deg)`,
+      }}
+    >
+      <div className="group relative">
+        <span className="logo-name absolute top-20 -m-2 text-white font-bold hidden group-hover:block">
+          {logo.name}
+        </span>
+        <img
+          src={logo.src}
+          alt={logo.name}
+          className="animate-bounce hover:cursor-pointer"
+          loading="lazy" // Lazy load the images
+        />
+      </div>
+    </div>
+  );
+}
+
 function AppContent() {
   const [positions, setPositions] = useState([]);
   const [disableRoutes, setDisableRoutes] = useState(false);
@@ -71,11 +104,19 @@ function AppContent() {
     setPositions(newPositions);
   }, []);
 
+  const handleMouseEnter = useCallback(() => {
+    setDisableRoutes(true);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setDisableRoutes(false);
+  }, []);
+
   useEffect(() => {
     updatePositions();
     window.addEventListener("resize", updatePositions);
     return () => window.removeEventListener("resize", updatePositions);
-  }, []);
+  }, [updatePositions]);
 
   return (
     <div className="app-background">
@@ -90,36 +131,9 @@ function AppContent() {
       </div>
       {location.pathname !== '/scan' && (
         <div className="hidden md:block lg:block logo-container">
-          {positions.map((position, index) => {
-            const logo = LOGOS[index % LOGOS.length];
-            const rotation = getRandomRotation();
-            return (
-              <div
-                className="logo"
-                key={index}
-                data-name={logo.name}
-                style={{
-                  top: position.y,
-                  left: position.x,
-                  transform: `rotate(${rotation}deg)`,
-                }}
-                onMouseEnter={() => setDisableRoutes(true)}
-                onMouseLeave={() => setDisableRoutes(false)}
-              >
-                <div className="group relative">
-                  <span className="logo-name absolute top-20 -m-2 text-white font-bold hidden group-hover:block">
-                    {logo.name}
-                  </span>
-                  <img
-                    src={logo.src}
-                    alt={logo.name}
-                    className="animate-bounce hover:cursor-pointer"
-                    loading="lazy" // Lazy load the images
-                  />
-                </div>
-              </div>
-            );
-          })}
+          {positions.map((position, index) => (
+            <LogoComponent key={index} position={position} />
+          ))}
         </div>
       )}
     </div>
