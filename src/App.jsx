@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import Logo from "./assets/Logo.png";
 import Logo2 from "./assets/UXDX.png";
@@ -32,8 +32,19 @@ function getRandomRotation() {
 }
 
 function App() {
+  return (
+    <Provider store={store}>
+      <Router>
+        <AppContent />
+      </Router>
+    </Provider>
+  );
+}
+
+function AppContent() {
   const [positions, setPositions] = useState([]);
   const [disableRoutes, setDisableRoutes] = useState(false);
+  const location = useLocation();
 
   const updatePositions = useCallback(() => {
     const newPositions = [];
@@ -67,19 +78,18 @@ function App() {
   }, [updatePositions]);
 
   return (
-    <Provider store={store}>
-    <Router>
-      <div className="app-background">
-        <Navbar />
-        <div className={`routes-container ${disableRoutes ? 'pointer-events-none' : 'pointer-events-auto'}`}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/swap" element={<Home />} />
-            <Route path="/pool" element={<Pool />} />
-            <Route path="/scan" element={<Scan />} />
-          </Routes>
-        </div>
-        <div className="logo-container">
+    <div className="app-background">
+      <Navbar />
+      <div className={`routes-container ${disableRoutes ? 'pointer-events-none' : 'pointer-events-auto'}`}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/swap" element={<Home />} />
+          <Route path="/pool" element={<Pool />} />
+          <Route path="/scan" element={<Scan />} />
+        </Routes>
+      </div>
+      {location.pathname !== '/scan' && (
+        <div className="hidden md:block lg:block logo-container">
           {positions.map((position, index) => {
             const logo = LOGOS[index % LOGOS.length];
             const rotation = getRandomRotation();
@@ -111,9 +121,8 @@ function App() {
             );
           })}
         </div>
-      </div>
-    </Router>
-    </Provider>
+      )}
+    </div>
   );
 }
 

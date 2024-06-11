@@ -2,9 +2,9 @@ import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import Logo from "../assets/Logo.png";
 import { ethers } from "ethers";
-import { TbCopyCheck,TbCopyCheckFilled } from "react-icons/tb";
+import { TbCopyCheck, TbCopyCheckFilled } from "react-icons/tb";
 import { useDispatch } from "react-redux";
-import {setWalletAddress} from "../redux/walletSlice";
+import { setWalletAddress } from "../redux/walletSlice";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -15,9 +15,9 @@ const Navbar = () => {
     address: null,
     balance: null,
   });
-  const[ isCopy, setIsCopy] = useState(false);
+  const [isCopy, setIsCopy] = useState(false);
   function truncateString(str, maxLength) {
-    if (str?.length>0 && str?.length <= maxLength) {
+    if (str?.length > 0 && str?.length <= maxLength) {
       return str; // If string length is within or equal to maxLength, return the original string
     } else {
       const truncatedString =
@@ -64,7 +64,7 @@ const Navbar = () => {
       ...data,
       address: account,
     });
-   dispatch(setWalletAddress(account));
+    dispatch(setWalletAddress(account));
     getBalance(account);
   };
   console.log(data);
@@ -73,10 +73,10 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleCopy =(address)=>{
-    navigator.clipboard.writeText(address)
-    setIsCopy(!isCopy)
-  }
+  const handleCopy = (address) => {
+    navigator.clipboard.writeText(address);
+    setIsCopy(!isCopy);
+  };
 
   return (
     <nav className="bg-gray-600 text-white relative z-10">
@@ -151,14 +151,21 @@ const Navbar = () => {
             onClick={connectMetaMask}
             className="font-bold text-black rounded-md bg-[#F3BB1B] px-4 py-[7px] cursor-pointer"
           >
-            {data && data.address && data.address.length > 0
-              ? (
-                <div className="flex flex-row items-center space-x-4">
-                  <p>{truncatedAddress}</p>
-                {isCopy ?<TbCopyCheckFilled size={22} />:  <TbCopyCheck size={22} onClick={()=>handleCopy(data?.address)} />}
-                </div>
-              )
-              : "Connect To Wallet"}
+            {data && data.address && data.address.length > 0 ? (
+              <div className="flex flex-row items-center space-x-4">
+                <p>{truncatedAddress}</p>
+                {isCopy ? (
+                  <TbCopyCheckFilled size={22} />
+                ) : (
+                  <TbCopyCheck
+                    size={22}
+                    onClick={() => handleCopy(data?.address)}
+                  />
+                )}
+              </div>
+            ) : (
+              "Connect To Wallet"
+            )}
           </button>
         </div>
 
@@ -270,15 +277,24 @@ const Navbar = () => {
           </div>
         </ul>
         <button
-        onClick={connectMetaMask} className="font-bold mt-4 w-full rounded-md text-black bg-[#F3BB1B] px-4 py-2 cursor-pointer hover:bg-[#f2a80c] transition-colors duration-300">
-          {data && data.address && data.address.length > 0
-              ? (
-                <div className="flex flex-row items-center space-x-4">
-                  <p>{truncatedAddress}</p>
-                {isCopy ?<TbCopyCheckFilled size={22} />:  <TbCopyCheck size={22} onClick={()=>handleCopy(data?.address)} />}
-                </div>
-              )
-              : "Connect To Wallet"}
+          onClick={connectMetaMask}
+          className="font-bold mt-4 w-full rounded-md text-black bg-[#F3BB1B] px-4 py-2 cursor-pointer hover:bg-[#f2a80c] transition-colors duration-300"
+        >
+          {data && data.address && data.address.length > 0 ? (
+            <div className="flex flex-row items-center space-x-4">
+              <p>{truncatedAddress}</p>
+              {isCopy ? (
+                <TbCopyCheckFilled size={22} />
+              ) : (
+                <TbCopyCheck
+                  size={22}
+                  onClick={() => handleCopy(data?.address)}
+                />
+              )}
+            </div>
+          ) : (
+            "Connect To Wallet"
+          )}
         </button>
       </div>
     </nav>

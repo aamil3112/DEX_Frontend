@@ -41,7 +41,7 @@
   left: -100%;
   width: 70%;
   height: 100vh;
-  background: linear-gradient(to bottom, #7c3aed, #7c3aed, #4f46e5);
+  background: #4B5563;
   color: white;
   transition: left 0.3s ease-in-out;
   padding: 2rem 1rem;

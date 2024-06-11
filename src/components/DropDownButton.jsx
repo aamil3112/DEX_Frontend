@@ -30,7 +30,7 @@ const DropdownButton = ({ selectedOption, onOptionSelect, otherSelectedOption })
       {isOpen && (
         <div
           id="dropdown"
-          className="absolute z-10 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-[#1B0744]"
+          className="absolute z-10 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-[#4B5563]"
         >
           <ul className="py-2 divide-y-2 divide-slate-400/25 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
             {['POX', 'UXDX',].map((token) => (
