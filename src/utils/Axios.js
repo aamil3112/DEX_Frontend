@@ -1,23 +1,25 @@
 import axios from "axios";
+
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const POX_TOKEN_ADDRESS = import.meta.env.VITE_POX_TOKEN_ADDRESS;
 const UXDX_TOKEN_ADDRESS = import.meta.env.VITE_UXDX_TOKEN_ADDRESS;
-const walletAddress = localStorage.getItem("walletAddress");
 
-export const getSwap = async (amountIn,fromToken,toToken) => {
+
+export const getSwap = async (walletAddress,amountIn,fromToken,toToken) => {
+    console.log(fromToken, toToken);
   try {
-    const data = await axios.post(BASE_URL + "/swap", {
+    const response = await axios.post(BASE_URL + "/swap", {
       walletAddress: walletAddress,
       amountIn: "5000",
     });
-    console.log(data);
-    return data;
+    // console.log(response);
+    return response?.data;
   } catch (error) {
     console.log(error);
   }
 };
 
-export const getAddLiquidity = async (fromAmount, toAmount, fromToken, toToken) => {
+export const getAddLiquidity = async (walletAddress,fromAmount, toAmount, fromToken, toToken) => {
     let from_Token;
     let to_Token;
 

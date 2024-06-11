@@ -3,8 +3,11 @@ import { useState } from "react";
 import Logo from "../assets/Logo.png";
 import { ethers } from "ethers";
 import { TbCopyCheck,TbCopyCheckFilled } from "react-icons/tb";
+import { useDispatch } from "react-redux";
+import {setWalletAddress} from "../redux/walletSlice";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   const location = useLocation();
   const currentPath = location.pathname;
   const [isOpen, setIsOpen] = useState(false);
@@ -61,7 +64,7 @@ const Navbar = () => {
       ...data,
       address: account,
     });
-    localStorage.setItem("walletAddress",account);
+   dispatch(setWalletAddress(account));
     getBalance(account);
   };
   console.log(data);

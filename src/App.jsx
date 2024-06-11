@@ -5,6 +5,8 @@ import Logo from "./assets/Logo.png";
 import Logo2 from "./assets/UXDX.png";
 import { Home, Pool, Scan } from "./pages";
 import Navbar from "./layout/Navbar";
+import { Provider } from 'react-redux';
+import store from "./redux/store";
 
 const PADDING = 200;
 const NUM_INSTANCES = 6;
@@ -65,6 +67,7 @@ function App() {
   }, [updatePositions]);
 
   return (
+    <Provider store={store}>
     <Router>
       <div className="app-background">
         <Navbar />
@@ -110,6 +113,7 @@ function App() {
         </div>
       </div>
     </Router>
+    </Provider>
   );
 }
 
