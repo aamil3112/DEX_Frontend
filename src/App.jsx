@@ -75,7 +75,7 @@ function AppContent() {
     updatePositions();
     window.addEventListener("resize", updatePositions);
     return () => window.removeEventListener("resize", updatePositions);
-  }, [updatePositions]);
+  }, []);
 
   return (
     <div className="app-background">

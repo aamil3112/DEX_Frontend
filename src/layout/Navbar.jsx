@@ -1,7 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import Logo from "../assets/Logo.png";
-import { ethers } from "ethers";
 import { TbCopyCheck, TbCopyCheckFilled } from "react-icons/tb";
 import { useDispatch } from "react-redux";
 import { setWalletAddress } from "../redux/walletSlice";
@@ -13,7 +12,6 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState({
     address: null,
-    balance: null,
   });
   const [isCopy, setIsCopy] = useState(false);
   function truncateString(str, maxLength) {
@@ -43,29 +41,12 @@ const Navbar = () => {
     }
   };
 
-  const getBalance = (address) => {
-    if (!address) return; // Ensure address is provided
-    window.ethereum
-      .request({
-        method: "eth_getBalance",
-        params: [address, "latest"],
-      })
-      .then((balance) => {
-        setData({
-          ...data,
-          balance: ethers.utils.formatEther(balance),
-        });
-      })
-      .catch((error) => console.error("Error getting balance:", error));
-  };
-
   const accountChangeHandler = (account) => {
     setData({
       ...data,
       address: account,
     });
     dispatch(setWalletAddress(account));
-    getBalance(account);
   };
   console.log(data);
 
