@@ -33,7 +33,7 @@ const DropdownButton = ({ selectedOption, onOptionSelect, otherSelectedOption })
           className="absolute z-10 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-[#4B5563]"
         >
           <ul className="py-2 divide-y-2 divide-slate-400/25 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-            {['POX', 'UXDX',].map((token) => (
+            {['POX', 'USDX',].map((token) => (
               <li key={token}>
                 <p
                   className={`block px-4 py-2 hover:bg-gray-100 dark:hover:bg-[#1B0744] dark:hover:text-white cursor-pointer 

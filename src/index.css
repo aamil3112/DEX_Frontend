@@ -10,6 +10,10 @@
     }
   }
 
+  .decorated option:hover{
+    background-color: #9ce21b !important;
+  }
+
   .yellow-header {
     background-color: #F3BB1B ;
     border:none !important;

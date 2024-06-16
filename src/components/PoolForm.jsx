@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import DropdownButton from "../components/DropDownButton";
 import InputField from "../components/InputField";
 import { IoAddOutline, IoArrowBackOutline } from "react-icons/io5";
@@ -17,25 +17,16 @@ const PoolForm = () => {
   const [isShowModal, setIsShowModal] = useState(false);
   const walletAddress = useSelector((state) => state?.wallet);
 
-  useEffect(() => {
-    const isValidInput =
-      fromAmount &&
-      toAmount &&
-      fromToken !== "Select a token" &&
-      toToken !== "Select a token";
-    console.log("rendered");
-    if (!isValidInput) {
-      return;
-    }
-
-    const debounceTimer = setTimeout(() => {
-      handleGetAddLiquidity();
-    }, 1000);
-
-    return () => clearTimeout(debounceTimer);
-  }, [fromAmount, toAmount, fromToken, toToken]);
-
   const handleGetAddLiquidity = async () => {
+    const isValidInput =
+    fromAmount &&
+    toAmount &&
+    fromToken !== "Select a token" &&
+    toToken !== "Select a token";
+  if (!isValidInput) {
+    return;
+  }
+
     const data = await getAddLiquidity(
       walletAddress?.address,
       fromAmount,
@@ -43,7 +34,6 @@ const PoolForm = () => {
       fromToken,
       toToken
     );
-    console.log(data);
     if (data?.statusCode === 200) {
       setIsShowModal(true);
       return;
@@ -108,7 +98,8 @@ const PoolForm = () => {
       </InputField>
       {showPoolTable && <PoolTable />}
       <button
-        onClick={() => setShowPoolTable(!showPoolTable)}
+        // onClick={() => setShowPoolTable(!showPoolTable)}
+        onClick={handleGetAddLiquidity}
         className="font-bold w-full md:w-3/4 mt-14 rounded-md bg-[#F3BB1B] px-4 py-[10px] cursor-pointer"
       >
         {walletAddress?.address ? "Add Liquidity" : "Connect To Wallet"}
