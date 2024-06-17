@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { TbArrowsDownUp,TbArrowsUpDown  } from "react-icons/tb";
+import { TbArrowsDownUp, TbArrowsUpDown } from "react-icons/tb";
 import DropdownButton from "../components/DropDownButton";
 import InputField from "../components/InputField";
 import Logo from "../assets/Logo.png";
@@ -16,17 +16,18 @@ const SwapForm = () => {
   const [fromToken, setFromToken] = useState("Select a token");
   const [toToken, setToToken] = useState("Select a token");
   const [showRecipient, setShowRecipient] = useState(false);
-  const [slippage, setSlippage] = useState('');
-  const [customSlippage, setCustomSlippage] = useState('');
+  const [slippage, setSlippage] = useState("");
+  const [customSlippage, setCustomSlippage] = useState("");
   const [swapArrowState, setSwapArrowState] = useState(true);
-
-  useEffect(() => {
-    const debounceTimer = setTimeout(() => {
-      getSwapAmount(fromAmount);
+  let debounceTimer;
+  const handleFromAmountChange = (e) => {
+    const value = e.target.value;
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      setFromAmount(value);
+      getSwapAmount(value);
     }, 500);
-
-    return () => clearTimeout(debounceTimer);
-  }, [fromAmount]);
+  };
 
   const handleSwap = () => {
     const isValidInput =
@@ -34,7 +35,7 @@ const SwapForm = () => {
       fromToken !== "Select a token" &&
       toToken !== "Select a token";
     if (!isValidInput) {
-      alert("Enter both input value and select both tokens.")
+      alert("Enter both input value and select both tokens.");
       return;
     }
     getSwap(walletAddress?.address, fromAmount, fromToken, toToken);
@@ -52,6 +53,8 @@ const SwapForm = () => {
     setFromToken(toToken);
     setToToken(fromToken);
   };
+ 
+  console.log(fromAmount, toAmount, fromToken, toToken);
 
   const handleFromTokenSelect = (token) => {
     if (token === toToken) {
@@ -76,7 +79,8 @@ const SwapForm = () => {
         label="From"
         placeholder="Enter an amount"
         value={fromAmount}
-        onChange={(e) => setFromAmount(e.target.value)}
+        onChange={handleFromAmountChange}
+        
       >
         <DropdownButton
           selectedOption={fromToken}
@@ -85,18 +89,23 @@ const SwapForm = () => {
         />
       </InputField>
 
-    {swapArrowState? <TbArrowsDownUp
-        size={20}
-        className="my-4 md:my-8"
-        style={{ cursor: "pointer" }}
-        onClick={handleReverseToken}
-        color="white"
-      />:  <TbArrowsUpDown
-      size={20}
-      className="my-4 md:my-8"
-      style={{ cursor: "pointer" }}
-      onClick={handleReverseToken}
-      color="white" />}
+      {swapArrowState ? (
+        <TbArrowsDownUp
+          size={20}
+          className="my-4 md:my-8"
+          style={{ cursor: "pointer" }}
+          onClick={handleReverseToken}
+          color="white"
+        />
+      ) : (
+        <TbArrowsUpDown
+          size={20}
+          className="my-4 md:my-8"
+          style={{ cursor: "pointer" }}
+          onClick={handleReverseToken}
+          color="white"
+        />
+      )}
 
       <InputField
         type="number"
@@ -112,12 +121,12 @@ const SwapForm = () => {
         />
       </InputField>
 
-      <SlippageDropDown 
-        slippage={slippage} 
-        setSlippage={setSlippage} 
+      <SlippageDropDown
+        slippage={slippage}
+        setSlippage={setSlippage}
         customSlippage={customSlippage}
         setCustomSlippage={setCustomSlippage}
-      /> 
+      />
 
       <div className="flex items-center justify-end mt-2 mb-6 w-full cursor-pointer">
         <button
@@ -153,7 +162,10 @@ const SwapForm = () => {
           <p className="text-white font-bold">POX</p>
         </div>
 
-        <button onClick={handleSwap} className="font-bold w-full md:w-3/4 mt-6 rounded-md bg-[#F3BB1B] px-4 py-[7px] cursor-pointer">
+        <button
+          onClick={handleSwap}
+          className="font-bold w-full md:w-3/4 mt-6 rounded-md bg-[#F3BB1B] px-4 py-[7px] cursor-pointer"
+        >
           {walletAddress?.address ? "Swap" : "Connect To Wallet"}
         </button>
       </div>
