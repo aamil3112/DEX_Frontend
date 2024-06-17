@@ -1,8 +1,62 @@
+import AnimatedNumber from "../components/AnimatingNumber";
+import Glassmorphosim from "../components/Glassmorphosim";
+import { BsQuestionCircle } from "react-icons/bs";
+import { IoMdArrowForward } from "react-icons/io";
+import { IoWalletOutline } from "react-icons/io5";
+import PoolForm from "../components/PoolForm";
+import { useState } from "react";
+import PolicyOptions from "../components/PolicyOptions";
 
 const Pool = () => {
-  return (
-    <div>Pool</div>
-  )
-}
+  const totalValueLocked = 411502134;
+  const [showPoolForm, setShowPoolForm] = useState(false);
 
-export default Pool
+  return (
+    <div className="flex pt-0 md:pt-36 lg:pt-36 min-h-screen flex-col md:items-center justify-center md:justify-start md:py-36 px-4">
+      <div className="text-center">
+        <p className="text-2xl pb-1 text-white font-bold">Total Value Locked</p>
+        <p className="text-5xl text-[#F3BB1B] font-bold flex items-center justify-center ">
+          $ <AnimatedNumber value={totalValueLocked} />
+        </p>
+      </div>
+      <div className="pt-6 pb-2 w-full md:w-1/3 md:pt-12">
+        <Glassmorphosim>
+          {!showPoolForm ? (
+            <>
+              <button
+                onClick={() => setShowPoolForm(!showPoolForm)}
+                className="font-bold w-full md:w-2/3 mt-6 rounded-md bg-[#fcc93f] px-4 py-[14px] text-xl cursor-pointer"
+              >
+                Add Liquidity
+              </button>
+              <div className="flex justify-between items-center w-full md:w-2/3 mt-2">
+                <p className="text-white font-medium">Your Liquidity</p>
+                <BsQuestionCircle color="#F3BB1B" size={20} />
+              </div>
+              <div className="flex justify-center items-center mt-10 space-x-4">
+                <button className="font-bold relative inline-flex items-center justify-center px-10 py-4 overflow-hidden
+                 text-white bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg shadow-lg group">
+                  <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-white opacity-10 rounded-full group-hover:w-56 group-hover:h-56"></span>
+                  <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30"></span>
+                  <span className="relative z-10 flex items-center space-x-2">
+                    <IoWalletOutline size={20} />
+                    <span>View your liquidity</span>
+                  </span>
+                </button>
+                <IoMdArrowForward size={24} color="white" />
+              </div>
+            </>
+          ) : (
+            <PoolForm />
+          )}
+        </Glassmorphosim>
+      </div>
+
+      <div className="mt-12 md:mt-0 lg:mt-0">
+        <PolicyOptions />
+      </div>
+    </div>
+  );
+};
+
+export default Pool;
