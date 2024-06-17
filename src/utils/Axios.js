@@ -13,7 +13,7 @@ export const getSwap = async (walletAddress,amountIn,fromToken,toToken) => {
       amountIn: "5000",
     });
     console.log(response?.data);
-    return response?.data;
+    return response;
   } catch (error) {
     console.log(error);
   }
@@ -21,10 +21,10 @@ export const getSwap = async (walletAddress,amountIn,fromToken,toToken) => {
 
 export const getSwapAmount = async(amountIn)=>{
     try {
-        const response = await axios.get(BASE_URL+"/getAmountOut",{
+        const response = await axios.post(BASE_URL+"/getAmountOut",{
             amountIn,
         })
-        console.log(response?.data);
+        return response?.data?.data[0]?.hex;
     } catch (error) {
         console.log(error);
     }

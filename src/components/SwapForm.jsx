@@ -19,15 +19,33 @@ const SwapForm = () => {
   const [slippage, setSlippage] = useState("");
   const [customSlippage, setCustomSlippage] = useState("");
   const [swapArrowState, setSwapArrowState] = useState(true);
-  let debounceTimer;
+  const [debouncedAmount, setDebouncedAmount] = useState(fromAmount);
+
+  // Handle input change with debounce
   const handleFromAmountChange = (e) => {
-    const value = e.target.value;
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => {
-      setFromAmount(value);
-      getSwapAmount(value);
-    }, 500);
+    setFromAmount(e.target.value);
   };
+
+  useEffect(() => {
+    const debounceTimer = setTimeout(() => {
+      setDebouncedAmount(fromAmount);
+    }, 50);
+
+    // Cleanup timeout if the component unmounts or fromAmount changes
+    return () => clearTimeout(debounceTimer);
+  }, [fromAmount]);
+
+  useEffect(() => {
+    const fetchSwapAmount = async () => {
+      if (debouncedAmount) {
+        const data = await getSwapAmount(debouncedAmount);
+
+        setToAmount(Number(data));
+      }
+    };
+    fetchSwapAmount();
+  }, [debouncedAmount]);
+
 
   const handleSwap = () => {
     const isValidInput =
@@ -53,8 +71,6 @@ const SwapForm = () => {
     setFromToken(toToken);
     setToToken(fromToken);
   };
- 
-  console.log(fromAmount, toAmount, fromToken, toToken);
 
   const handleFromTokenSelect = (token) => {
     if (token === toToken) {
@@ -80,7 +96,6 @@ const SwapForm = () => {
         placeholder="Enter an amount"
         value={fromAmount}
         onChange={handleFromAmountChange}
-        
       >
         <DropdownButton
           selectedOption={fromToken}
@@ -107,19 +122,15 @@ const SwapForm = () => {
         />
       )}
 
-      <InputField
-        type="number"
-        label="To"
-        placeholder="Enter an amount"
-        value={toAmount}
-        onChange={(e) => setToAmount(e.target.value)}
-      >
-        <DropdownButton
+      <div className="flex justify-between border-[1px] rounded-lg px-4 py-3">
+
+      <p className="text-white font-semibold "> {toAmount}</p>
+      <DropdownButton
           selectedOption={toToken}
           onOptionSelect={handleToTokenSelect}
           otherSelectedOption={fromToken}
         />
-      </InputField>
+      </div>
 
       <SlippageDropDown
         slippage={slippage}
